@@ -17,7 +17,7 @@ super();
 
 this.state={
  products:data.products,
- cartItems:[],
+ cartItems:localStorage.getItem("cartItems")?JSON.parse(localStorage.getItem("cartItems")):[],
  size:'',
  sort:''
 
@@ -25,17 +25,30 @@ this.state={
 
 }
 
+
+// createorder
+createOrder=(order)=>{
+ alert(`need to save order for ${order.name}`)
+}
+
+
 // remove from cart
 
 removeFromCart=(item)=>{
   console.log(`item removed ${item._id}`);
 
-  const cartItems= this.state.cartItems;
+  const cartItems= this.state.cartItems.slice();
   
 
   this.setState({
     cartItems:cartItems.filter(x=>x._id !==item._id)
+  },()=>{
+    // localStorage.setItem('cartItems', JSON.stringify(this.state.cartItems));
   })
+
+
+
+  localStorage.setItem('cartItems', JSON.stringify(cartItems.filter(x=>x._id !==item._id)));
 }
 
 // add to cart
@@ -60,6 +73,9 @@ addToCart=(product)=>{
  this.setState({
    cartItems:cartItems
  })
+
+localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
 }
 
 // sort products fuction
@@ -137,7 +153,10 @@ filterProducts=(e)=>{
            </div>
 
            <div className="sidebar">
-             <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart}  />
+             <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart}
+              createOrder={this.createOrder}
+             
+             />
            </div>
          </div>
         </main>
@@ -155,4 +174,4 @@ filterProducts=(e)=>{
 export default App;
 
 
-// next 7
+// next 8
