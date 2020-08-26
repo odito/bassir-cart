@@ -54,4 +54,4 @@ return(
     }
 }
 
-export default connect((state)=>({products:state.products.items}), {fetchProducts} )(Products);
+export default connect((state)=>({products:state.products.filterItems}), {fetchProducts} )(Products);
