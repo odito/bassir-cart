@@ -5,8 +5,8 @@ import data from './data.json';
 import Products from './components/Products';
 import Filter from './components/Filter';
 import Cart from './components/Cart';
-
-
+import store from './store';
+import {Provider} from "react-redux";
 
 import './App.css';
 
@@ -134,8 +134,8 @@ filterProducts=(e)=>{
   render(){
 
     return (
-   
-      <div className="grid-container">
+      <Provider store={store}>
+               <div className="grid-container">
         <header>
           <a href="/">React shopping cart</a>
         </header>
@@ -165,6 +165,8 @@ filterProducts=(e)=>{
           All rights reserved
         </footer>
       </div>
+      </Provider>
+ 
 
   )
   }
@@ -174,4 +176,4 @@ filterProducts=(e)=>{
 export default App;
 
 
-// next 10
+// next 11
