@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const shortid= require("shortid");
 
-
 const app = express();
 
 app.use(bodyParser.json());
@@ -32,6 +31,8 @@ app.get("/api/products", async(req, res)=>{
 const products =await Product.find({})
 
 res.send(products);
+
+
 })
 
 app.post("/api/products", async (req,res)=>{
