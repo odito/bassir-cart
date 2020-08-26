@@ -16,10 +16,9 @@ constructor(){
 super();
 
 this.state={
- products:data.products,
+
  cartItems:localStorage.getItem("cartItems")?JSON.parse(localStorage.getItem("cartItems")):[],
- size:'',
- sort:''
+ 
 
 }
 
@@ -79,52 +78,52 @@ localStorage.setItem('cartItems', JSON.stringify(cartItems));
 }
 
 // sort products fuction
-sortProducts=(e)=>{
-const sortItem = e.target.value;
-const sortRes = this.state.products.sort((a,b)=>{
+// sortProducts=(e)=>{
+// const sortItem = e.target.value;
+// const sortRes = this.state.products.sort((a,b)=>{
 
- if(sortItem===''){
-  return a.nim>b.nim ?1:-1
- }
+//  if(sortItem===''){
+//   return a.nim>b.nim ?1:-1
+//  }
 
- if(sortItem==='lowest'){
-  return a.price>b.price ?1:-1
- }
+//  if(sortItem==='lowest'){
+//   return a.price>b.price ?1:-1
+//  }
 
- if(sortItem==='highest'){
-  return a.price<b.price ?1:-1
- }
+//  if(sortItem==='highest'){
+//   return a.price<b.price ?1:-1
+//  }
 
-})
-this.setState({
-  sort:e.target.value,
-  products:sortRes
-})
-}
-
-
-filterProducts=(e)=>{
- console.log(e.target.value);
-
- if(e.target.value===''){
-    this.setState({
-      size:e.target.value,
-      products:data.products
-    })
- }
-
- else{
-  this.setState({
-    size:e.target.value,
-    products:data.products.filter(product=>{
-      return product.availableSizes.indexOf(e.target.value)>=0
-    })
-  })
- }
+// })
+// this.setState({
+//   sort:e.target.value,
+//   products:sortRes
+// })
+// }
 
 
+// filterProducts=(e)=>{
+//  console.log(e.target.value);
 
-}
+//  if(e.target.value===''){
+//     this.setState({
+//       size:e.target.value,
+//       products:data.products
+//     })
+//  }
+
+//  else{
+//   this.setState({
+//     size:e.target.value,
+//     products:data.products.filter(product=>{
+//       return product.availableSizes.indexOf(e.target.value)>=0
+//     })
+//   })
+//  }
+
+
+
+// }
 
 
 
@@ -143,10 +142,7 @@ filterProducts=(e)=>{
          <div className="content">
            <div className="main">
            
-           <Filter count={this.state.products.length} size={this.state.size}
-           sort={this.state.sort} 
-           filterProducts={this.filterProducts}
-           sortProducts={this.sortProducts}
+           <Filter 
            
            />
             <Products products={this.state.products} addToCart={this.addToCart} />
